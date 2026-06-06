@@ -1,0 +1,6 @@
+{
+  "name": "Freelancer Invoice Generator",
+  "description": "A clean and modern freelancer invoice generator to create, preview, manage, and download professional PDFs with live updates, draft recovery, logo uploads, and optional premium watermark removal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
