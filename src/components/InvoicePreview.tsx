@@ -51,94 +51,14 @@ export default function InvoicePreview({ invoice, id = 'invoice-pdf-capture', co
 
       {/* Styled Centered Watermark if not removed */}
       {isWatermarkShown && (
-        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 flex flex-col items-center justify-center p-8 opacity-[0.11] print:opacity-[0.14]" id="invoice-watermark">
-          <div className="flex flex-col items-center justify-center text-center max-w-sm">
-            {/* Elegant SVG for Malgave Solutions Logo */}
-            <svg
-              width="160"
-              height="160"
-              viewBox="0 0 200 200"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-40 h-40 drop-shadow-sm select-none"
-            >
-              <defs>
-                <linearGradient id="malgaveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#d946ef" />
-                  <stop offset="50%" stopColor="#ec4899" />
-                  <stop offset="100%" stopColor="#f97316" />
-                </linearGradient>
-                <linearGradient id="ribbonGradient" x1="0%" y1="50%" x2="100%" y2="50%">
-                  <stop offset="0%" stopColor="#a855f7" />
-                  <stop offset="60%" stopColor="#ec4899" />
-                  <stop offset="100%" stopColor="#e11d48" />
-                </linearGradient>
-              </defs>
-
-              {/* Main M Outline */}
-              <path
-                d="M45 150 C45 80, 55 50, 75 50 C90 50, 95 80, 100 110 C105 80, 110 50, 125 50 C145 50, 155 80, 155 150"
-                stroke="url(#malgaveGradient)"
-                strokeWidth="10"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-
-              {/* Left loop inner support line */}
-              <path
-                d="M45 150 L70 85"
-                stroke="url(#malgaveGradient)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                opacity="0.6"
-              />
-
-              {/* Right Capsule Segment representing the capsule with vertical "SOUTIONS" text */}
-              <rect
-                x="118"
-                y="52"
-                width="28"
-                height="98"
-                rx="14"
-                stroke="url(#malgaveGradient)"
-                strokeWidth="8"
-                fill="none"
-              />
-
-              {/* Dynamic Curved/Flowing Wave Ribbon through the middle */}
-              <path
-                d="M35 110 C65 110, 80 140, 105 115 C130 90, 140 60, 158 85"
-                stroke="url(#ribbonGradient)"
-                strokeWidth="18"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                opacity="0.95"
-              />
-
-              {/* "SOUTIONS" styled text inside the right capsule leg */}
-              <text
-                x="132"
-                y="105"
-                fill="#ffffff"
-                fontSize="11"
-                fontWeight="900"
-                letterSpacing="1.2"
-                fontFamily="system-ui, sans-serif"
-                transform="rotate(-90 132 105) translate(-36, 4)"
-              >
-                SOUTIONS
-              </text>
-            </svg>
-
-            {/* Premium, business-friendly watermark text block */}
-            <div className="mt-4 flex flex-col items-center gap-1.5">
-              <span className="text-sm font-black tracking-widest text-neutral-900 font-sans uppercase">
-                MALGAVE SOLUTIONS
-              </span>
-              <p className="text-[9.5px] text-neutral-600 font-mono font-bold tracking-normal uppercase max-w-[280px]">
-                Generated with Freelancer Invoice Generator
-              </p>
-            </div>
+        <div className="absolute inset-0 pointer-events-none select-none overflow-hidden z-0 flex items-center justify-center p-8 opacity-[0.06] print:opacity-[0.08]" id="invoice-watermark">
+          <div className="transform -rotate-12 text-center select-none pointer-events-none">
+            <span className="text-2xl sm:text-3xl font-black tracking-[0.25em] text-neutral-900 font-sans uppercase whitespace-nowrap block">
+              Generated with
+            </span>
+            <span className="text-3xl sm:text-4xl font-extrabold tracking-[0.05em] text-indigo-700 font-mono block mt-1.5 ltr lowercase">
+              InvoiceGenerate.online
+            </span>
           </div>
         </div>
       )}
@@ -340,7 +260,7 @@ export default function InvoicePreview({ invoice, id = 'invoice-pdf-capture', co
           {isWatermarkShown ? (
             <span className="italic font-medium">Generated with Freelancer Invoice Generator</span>
           ) : (
-            <span className={`font-semibold tracking-wider ${colors.primaryText}`}>Apex Premium Freelancer</span>
+            <span className={`font-semibold tracking-wider ${colors.primaryText}`}>Verified Premium Invoice</span>
           )}
         </div>
       </div>

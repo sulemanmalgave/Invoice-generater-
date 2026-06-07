@@ -39,6 +39,54 @@ export default function App() {
   const [editingInvoice, setEditingInvoice] = useState<Invoice | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Dynamic SEO Page Title & Description based on currentView
+  useEffect(() => {
+    let title = 'Free Invoice Generator Online | Create & Download Professional PDF Invoices';
+    let description = 'Create professional invoices online in seconds. Add your logo, client details, taxes, and download PDF invoices instantly. Perfect for freelancers and businesses worldwide.';
+    
+    switch (currentView) {
+      case 'dashboard':
+        title = 'Free Invoice Generator Online | Create & Download Professional PDF Invoices';
+        description = 'Create professional invoices online in seconds. Add your logo, client details, taxes, and download PDF invoices instantly. Perfect for freelancers and businesses worldwide.';
+        break;
+      case 'create':
+        title = 'Create Professional Invoice | Free Invoice Generator Online';
+        description = 'Generate a high-quality PDF invoice instantly. Add customizable logo fields, item hours, rate descriptions, and taxation structures.';
+        break;
+      case 'invoices':
+        title = 'Manage Your Invoices | Free Invoice Generator';
+        description = 'Track billing analytics, outstanding metrics, paid statements, and list histories for your business invoices.';
+        break;
+      case 'settings':
+        title = 'Configure Invoice Preferences | Free Invoice Generator';
+        description = 'Set default currency, enterprise business identifiers, standard tax, discounts, and visual colors for your PDF templates.';
+        break;
+      case 'about':
+        title = 'About Us | Free Invoice Generator';
+        description = 'Learn more about the team behind our secure, 100% free, and fast PDF invoice generation service.';
+        break;
+      case 'privacy':
+        title = 'Privacy Policy | Free Invoice Generator';
+        description = 'Transparency practices, security guidelines, and how we handle local client-side storage for absolute confidentiality.';
+        break;
+      case 'terms':
+        title = 'Terms of Service | Free Invoice Generator';
+        description = 'Read our conditions regarding freelance billing systems, legal invoice accuracies, and our fair watermark regulations.';
+        break;
+    }
+
+    document.title = title;
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', description);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+  }, [currentView]);
+
   // Sync theme changes to the outer wrapper
   useEffect(() => {
     try {
@@ -142,7 +190,7 @@ export default function App() {
                   <Layers className="w-4 h-4" />
                 </div>
                 <div>
-                  <span className="font-extrabold text-neutral-900 dark:text-white tracking-tight text-sm uppercase">Apex Invoice</span>
+                  <span className="font-extrabold text-neutral-900 dark:text-white tracking-tight text-sm uppercase">Smart Invoice</span>
                   <span className="block text-[8px] text-neutral-400 font-bold uppercase tracking-widest font-mono">Freelance Client</span>
                 </div>
               </div>
@@ -380,6 +428,7 @@ export default function App() {
                 onEdit={handleStartEditingInvoice}
                 onViewAll={() => setCurrentView('invoices')}
                 colorTheme={settings.colorTheme}
+                defaultCurrency={settings.defaultCurrency}
               />
             )}
 

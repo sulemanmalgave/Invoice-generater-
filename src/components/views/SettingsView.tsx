@@ -50,16 +50,16 @@ export default function SettingsView({
   };
 
   const handleResetDefaults = () => {
-    if (confirm('Are you sure you want to reset all configurations to sample defaults?')) {
+    if (confirm('Are you sure you want to reset all configurations?')) {
       const reset: UserSettings = {
-        businessName: 'Apex Digital Studio',
-        businessEmail: 'hello@apexdigital.com',
-        businessPhone: '+1 (555) 342-9980',
-        businessAddress: '150 Spectrum Rd, Suite 400\nSan Francisco, CA 94107',
-        defaultCurrency: '$',
-        defaultTaxRate: 10,
+        businessName: '',
+        businessEmail: '',
+        businessPhone: '',
+        businessAddress: '',
+        defaultCurrency: '₹',
+        defaultTaxRate: 0,
         defaultDiscountRate: 0,
-        defaultNotes: 'Thank you for choosing Apex Digital Studio. Payment is appreciated within 14 days of invoice receipt.',
+        defaultNotes: '',
         watermarkRemoved: false,
         logoUnlocked: false,
         colorTheme: 'indigo',

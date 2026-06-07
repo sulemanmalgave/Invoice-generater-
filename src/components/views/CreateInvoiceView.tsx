@@ -295,12 +295,12 @@ export default function CreateInvoiceView({
       taxRate: savedSettings.defaultTaxRate ?? 0,
       discountRate: savedSettings.defaultDiscountRate ?? 0,
       items: [
-        { id: 'itm-1', description: 'Consulting Services', quantity: 1, rate: 150, total: 150 }
+        { id: 'itm-1', description: '', quantity: 1, rate: 0, total: 0 }
       ],
-      subtotal: 150,
+      subtotal: 0,
       taxTotal: 0,
       discountTotal: 0,
-      grandTotal: 150,
+      grandTotal: 0,
       notes: savedSettings.defaultNotes || '',
       isDraft: true,
       status: 'Draft',
@@ -1418,7 +1418,7 @@ export default function CreateInvoiceView({
                     Watermark is Currently Active
                   </span>
                   <span className="text-neutral-500 dark:text-neutral-400 text-[11px] block leading-normal font-sans">
-                    Free PDF downloads contain a centered Malgave Solutions watermark stamp across all pages.
+                    Free PDF downloads contain a professional 'Generated with InvoiceGenerate.online' text watermark across all pages.
                   </span>
                 </div>
                 <button
