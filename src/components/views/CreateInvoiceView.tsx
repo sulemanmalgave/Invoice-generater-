@@ -460,6 +460,7 @@ export default function CreateInvoiceView({
   };
 
   const handleAdFinishedUnlock = () => {
+    console.log('Ad finished. Updating watermark state to removed=true');
     setInvoice(prev => ({
       ...prev,
       watermarkRemoved: true,
@@ -542,6 +543,7 @@ export default function CreateInvoiceView({
 
   // Core PDF builder
   const handleDownloadPdfFile = async (forcedWatermark: boolean) => {
+    console.log('Downloading PDF. ForcedWatermark:', forcedWatermark, 'Current watermarkRemoved (state):', invoice.watermarkRemoved);
     setIsGeneratingPdf(true);
 
     // Save temporary backup value
@@ -553,16 +555,16 @@ export default function CreateInvoiceView({
         // Enforce watermark insertion
         setInvoice(prev => ({ ...prev, watermarkRemoved: false }));
         setDownloadedWithWatermark(true);
-      } else {
-        // Render exactly according to state (unlocked)
-        setInvoice(prev => ({ ...prev, watermarkRemoved: originalWatermarkState }));
-        if (!originalWatermarkState) {
-          setDownloadedWithWatermark(true);
-        }
+      }
+      // If !forcedWatermark, do not override watermarkRemoved, 
+      // rely on existing state updated by ad unlock or previous state.
+      else {
+        setDownloadedWithWatermark(true);
       }
 
       // Small tick delay to let DOM re-render watermark change
       await new Promise(resolve => setTimeout(resolve, 250));
+      console.log('Capture starting. Watermark state (invoice.watermarkRemoved):', invoice.watermarkRemoved);
 
       const captureElement = document.getElementById('invoice-pdf-capture-view');
       if (!captureElement) {
